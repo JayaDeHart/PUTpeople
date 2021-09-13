@@ -11,7 +11,7 @@ const Person = dynamoose.model('lab-18-people', personSchema);
 
 exports.handler = async (event) => {
   //
-  let updateObject = event.body;
+  let updateObject = JSON.parse(event.body);
   let { id } = event.pathParameters;
   const response = await Person.update({ primarykey: id }, { ...updateObject });
   return {
